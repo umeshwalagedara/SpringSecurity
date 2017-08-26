@@ -36,6 +36,8 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     private Set<Role> roles;
 
+    public User() {
+    }
 
     public User(User user) {
         this.active = user.getActive();

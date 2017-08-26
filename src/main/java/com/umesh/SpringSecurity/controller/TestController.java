@@ -1,5 +1,6 @@
 package com.umesh.SpringSecurity.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @RequestMapping(value = "/secure/test", method = RequestMethod.GET)
     public String sayHello(){
+        return "Hello";
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String sayHello2(){
         return "Hello";
     }
 

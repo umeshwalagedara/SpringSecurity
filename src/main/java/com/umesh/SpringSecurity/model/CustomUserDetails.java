@@ -1,13 +1,20 @@
 package com.umesh.SpringSecurity.model;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.AssertFalse;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Created by umesh on 8/22/17.
  */
+
+
 public class CustomUserDetails  extends  User implements UserDetails {
 
 
@@ -17,7 +24,12 @@ public class CustomUserDetails  extends  User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+
+         List<SimpleGrantedAuthority> list =  getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRoleName())).collect(Collectors.toList());
+
+    return list;
+
     }
 
     @Override

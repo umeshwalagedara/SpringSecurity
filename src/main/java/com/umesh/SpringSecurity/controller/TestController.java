@@ -18,7 +18,7 @@ public class TestController {
     @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(value = "/secure/test", method = RequestMethod.GET)
     public String sayHello(){
-        return "Hello";
+        return "Hello secure";
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)

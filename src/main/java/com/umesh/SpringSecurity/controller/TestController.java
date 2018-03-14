@@ -23,7 +23,7 @@ public class TestController {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String sayHello2(){
-        return "Hello";
+        return "Hello123";
     }
 
 
